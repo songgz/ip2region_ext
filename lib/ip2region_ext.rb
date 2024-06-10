@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-require_relative "ip2region/version"
-require_relative 'ip2region/ip2region_ffi'
+require_relative "ip2region_ext/version"
+require_relative 'ip2region_ext/ip2region_ffi'
+require_relative 'ip2region_ext/xdb'
 
-module Ip2region
+module Ip2regionExt
   class Error < StandardError; end
 
   @@xdb_path = File.join(__dir__, '../db','ip2region.xdb')
 
-  def self.connect(db_path = nil, db_type = :file)
-    Xdb.instance.connect(db_path || @@xdb_path , db_type)
+  def self.connect(option = {})
+    option[:db_path] ||= @@xdb_path
+    Xdb.instance.connect(option)
   end
 
   def self.search(ip_address)

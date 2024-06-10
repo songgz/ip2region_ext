@@ -1,22 +1,11 @@
 require 'ffi'
 
-module Ip2region
+module Ip2regionExt
   extend FFI::Library
-  ffi_lib File.join(__dir__, '../','libip2region.so')
+  ffi_lib File.join(__dir__, '../','libip2region_ext.so')
 
   XDB_HEADER_INFO_LENGTH = 256
   XDB_VECTOR_INDEX_LENGTH = 524288
-
-  class FILE < FFI::Struct
-    layout :_ptr, :pointer,  # 文件指针
-           :_cnt, :int,      # 缓冲区剩余字节数
-           :_base, :pointer,  # 缓冲区基地址
-           :_flag, :int,     # 文件状态标志
-           :_file, :int,     # 文件描述符
-           :_charbuf, :int,  # 是否为字符缓冲区
-           :_bufsiz, :int,   # 缓冲区大小
-           :_tmpfname, :string  # 临时文件名
-  end
 
   class XdbHeaderT < FFI::Struct
     layout :version, :ushort,

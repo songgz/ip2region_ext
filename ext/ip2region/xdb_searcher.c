@@ -18,19 +18,19 @@
 #include <windows.h>
 XDB_PRIVATE(int) gettimeofday(struct timeval* tp, void* tzp) {
     FILETIME ft;
-        ULARGE_INTEGER uint64;
-        long long ns100 = 116444736000000000LL;
+    ULARGE_INTEGER uint64;
+    long long ns100 = 116444736000000000LL;
 
-        GetSystemTimeAsFileTime(&ft);
-        uint64.LowPart = ft.dwLowDateTime;
-        uint64.HighPart = ft.dwHighDateTime;
-        uint64.QuadPart -= ns100;
-        uint64.QuadPart /= 10;
+    GetSystemTimeAsFileTime(&ft);
+    uint64.LowPart = ft.dwLowDateTime;
+    uint64.HighPart = ft.dwHighDateTime;
+    uint64.QuadPart -= ns100;
+    uint64.QuadPart /= 10;
 
-        tp->tv_sec = uint64.QuadPart / 1000000;
-        tp->tv_usec = uint64.QuadPart % 1000000;
+    tp->tv_sec = uint64.QuadPart / 1000000;
+    tp->tv_usec = uint64.QuadPart % 1000000;
 
-        return 0;
+    return 0;
 }
 #endif
 

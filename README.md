@@ -1,31 +1,34 @@
-# Ip2region
 
-TODO: Delete this and the text below, and describe your gem
+# Ip2regionExt
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ip2region`. To experiment with that code, run `bin/console` for an interactive prompt.
+## 介绍
 
-## Installation
+这是一个ip2region库c客户端的ruby ffi扩展,  基于 [lionsoul2014/ip2region](https://github.com/lionsoul2014/ip2region) 最新版本开发
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+直接调用c原生api,充分发挥IO操作的性能优势
 
-Install the gem and add to the application's Gemfile by executing:
+## 安装
+`gem install ip2region_ext`
+## 使用
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```ruby
+require 'ip2region_ext'
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+# 查询
+#db_type = :file|:index|:cache
+#Ip2regionExt.connect({db_type: :index, db_path: "/var/ip2region.xdb"})
+Ip2regionExt.connect({db_type: :index})
+p Ip2regionExt.search('114.114.114.114')
+Ip2regionExt.close
+# => "中国|0|辽宁省|丹东市|联通"
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+```
 
-## Usage
+## 如何下载外挂 xdb 文件
 
-TODO: Write usage instructions here
+下载这个文件 [https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region.xdb](https://github.com/lionsoul2014/ip2region/blob/master/data/ip2region.xdb)
 
-## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+## 协议
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ip2region.
+MIT 协议

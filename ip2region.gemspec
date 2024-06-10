@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/ip2region/version"
+require_relative "lib/ip2region_ext/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "ip2region"
-  spec.version = Ip2region::VERSION
+  spec.name = "ip2region_ext"
+  spec.version = Ip2regionExt::VERSION
   spec.authors = ["songgz"]
   spec.email = ["sgzhe@163.com"]
 
