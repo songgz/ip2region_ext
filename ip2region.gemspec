@@ -8,12 +8,12 @@ Gem::Specification.new do |spec|
   spec.authors = ["songgz"]
   spec.email = ["sgzhe@163.com"]
 
-  spec.summary = "Write a short summary, because RubyGems requires one."
-  spec.description = "Write a longer description or delete this line."
+  spec.summary = "这是一个ip2region库c客户端的ruby ffi扩展"
+  spec.description = "直接调用c原生api,充分发挥IO操作的性能优势"
   spec.homepage = "https://github.com/songgz/ip2region_ext"
   spec.required_ruby_version = ">= 3.0.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  spec.metadata["allowed_push_host"] = ""
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/songgz/ip2region_ext"
