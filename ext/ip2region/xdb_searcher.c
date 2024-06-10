@@ -7,7 +7,6 @@
 // @Date   2022/06/27
 
 #include "xdb_searcher.h"
-#include <time.h>
 
 // for Linux
 #ifdef XDB_LINUX
@@ -18,21 +17,20 @@
 #ifdef XDB_WINDOWS
 #include <windows.h>
 XDB_PRIVATE(int) gettimeofday(struct timeval* tp, void* tzp) {
-    time_t clock;
-    struct tm tm;
-    SYSTEMTIME wtm;
-    GetLocalTime(&wtm);
-    tm.tm_year = wtm.wYear - 1900;
-    tm.tm_mon = wtm.wMonth - 1;
-    tm.tm_mday = wtm.wDay;
-    tm.tm_hour = wtm.wHour;
-    tm.tm_min = wtm.wMinute;
-    tm.tm_sec = wtm.wSecond;
-    tm.tm_isdst = -1;
-    clock = mktime(&tm);
-    tp->tv_sec = clock;
-    tp->tv_usec = wtm.wMilliseconds * 1000;
-    return (0);
+    FILETIME ft;
+        ULARGE_INTEGER uint64;
+        long long ns100 = 116444736000000000LL;
+
+        GetSystemTimeAsFileTime(&ft);
+        uint64.LowPart = ft.dwLowDateTime;
+        uint64.HighPart = ft.dwHighDateTime;
+        uint64.QuadPart -= ns100;
+        uint64.QuadPart /= 10;
+
+        tp->tv_sec = uint64.QuadPart / 1000000;
+        tp->tv_usec = uint64.QuadPart % 1000000;
+
+        return 0;
 }
 #endif
 

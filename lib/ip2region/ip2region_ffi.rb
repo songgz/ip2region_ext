@@ -1,6 +1,6 @@
 require 'ffi'
 
-module IP2Region
+module Ip2region
   extend FFI::Library
   ffi_lib File.join(__dir__, '../','libip2region.so')
 
