@@ -10,14 +10,14 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Write a short summary, because RubyGems requires one."
   spec.description = "Write a longer description or delete this line."
-  spec.homepage = "https://github.com"
+  spec.homepage = "https://github.com/songgz/ip2region_ext"
   spec.required_ruby_version = ">= 3.0.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com"
-  spec.metadata["changelog_uri"] = "https://github.com"
+  spec.metadata["source_code_uri"] = "https://github.com/songgz/ip2region_ext"
+  spec.metadata["changelog_uri"] = "https://github.com/songgz/ip2region_ext"
 
   spec.extensions = Dir.glob("ext/**/extconf.rb")
   spec.platform = Gem::Platform::RUBY
